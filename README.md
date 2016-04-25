@@ -109,11 +109,11 @@ The following rules will be applied when posting an notification:
 Once you have passed extra parameters to `Notify.trigger`, they will be send to the function that is to be triggered:
 
 ```javascript
-const deal = function(dtd){
-    console.log(dtd.target); // the target
-    console.log(dtd.data); // the data that passed in
-    console.log(dtd.expression); // current expression of itself that applied
-    console.log(dtd.actualExpression); // the trigger expression
+const deal = function(note){
+    console.log(note.target); // the target
+    console.log(note.data); // the data that passed in
+    console.log(note.expression); // current expression of itself that applied
+    console.log(note.actualExpression); // the trigger expression
 };
 
 const notifyID = Notify.on('foo/*', deal);
