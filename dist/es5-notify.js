@@ -67,8 +67,9 @@
     N.on = function () {
         var expression = arguments.length <= 0 || arguments[0] === undefined ? '*' : arguments[0];
         var listener = arguments.length <= 1 || arguments[1] === undefined ? function () {} : arguments[1];
+        var context = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
 
-        return new N(expression, listener).id;
+        return new N(expression, listener.bind(context)).id;
     };
 
     N.off = function (id) {

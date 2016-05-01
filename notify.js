@@ -57,8 +57,8 @@
         });
     };
 
-    N.on = (expression = '*', listener = ()=>{}) => {
-        return new N(expression, listener).id;
+    N.on = (expression = '*', listener = ()=>{}, context = null) => {
+        return new N(expression, listener.bind(context)).id;
     };
 
     N.off = (id) => {

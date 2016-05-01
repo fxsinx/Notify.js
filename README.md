@@ -26,9 +26,11 @@ You can register a notification by:
 ```javascript
 const notifyID = Notify.on('foo', function(note){
     // ... deal with the notification
-});
+}, context);
 ```
 You'll supposed to get an unique Notify ID (String), which can be used to cancel the notification.
+
+You can specify `context` if you need.
 
 You can register notifications with `*`, which means matching any notifications:
 
@@ -114,9 +116,12 @@ const deal = function(note){
     console.log(note.data); // the data that passed in
     console.log(note.expression); // current expression of itself that applied
     console.log(note.actualExpression); // the trigger expression
+    console.log(this.name); // myObj.name
 };
 
-const notifyID = Notify.on('foo/*', deal);
+let myObj = {name:'Nick', age:18};
+
+const notifyID = Notify.on('foo/*', deal, myObj); // context is myObj
 
 Notify.trigger('foo'); // Will not trigger `deal`
 Notify.trigger('foo/bar', target, data); // Triggering `deal`
